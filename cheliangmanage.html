@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>机动车环保管理检验系统</title>
+    <script type="text/javascript"
+            src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+    <script type="text/javascript"
+            src="js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="js/jquery-easyui-1.4.1/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="js/jquery-easyui-1.4.1/themes/default/easyui.css"/>
+    <style>
+        a {
+            text-decoration: none;
+            color: #0E2D5F;
+        }
+
+        #logo {
+            width: 100%;
+            background: url("images/top_middle.png");
+
+            height: 100px;
+            clear: both;
+            float: left;
+            overflow: hidden;
+        }
+
+        #logo-left {
+            width: 530px;
+            height: 100%;
+            float: left;
+            background: url("images/top/gl_top_left.jpg");
+        }
+
+        #logo-right {
+            height: 100%;
+            width: 425px;
+            float: right;
+            background: url("images/top/gl_top_right1.png");
+        }
+
+        .tagScroll {
+            float: left;
+            width: 100%;
+        }
+
+        .divMainMenu {
+            position: absolute;
+            left: 0;
+            top: 100px;
+            width: 100%;
+            height: 36px;
+            font-size: 16px;
+            line-height: 36px;
+            vertical-align: central;
+            background-image: url("images/main_menu_bg.png");
+        }
+
+        .tagScroll ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tagScroll li {
+            display: inline;
+            line-height: 36px;
+            cursor: pointer;
+        }
+
+        .main-menu {
+            margin: 0px 0px 0px 5px;
+            font-family: 微软雅黑, 宋体, Arial, helvetica, sans-serif;
+            font-size: 16px;
+            padding: 3px 5px 8px 5px;
+            height: 36px;
+            color: #0E2D5F;
+        }
+
+        .main-menu-selected {
+            color: black;
+            background-color: #95b8e7;
+            border-radius: 5px 5px 0px 0px;
+        }
+
+        form div {
+            margin: 10px 5px 10px 5px;
+        }
+
+        .needed {
+            color: red;
+        }
+
+        #tabpanel input {
+            margin: 6px;
+        }
+
+        fieldset {
+            border: solid 1px #aaa;
+            padding: 5px;
+        }
+
+        fieldset input {
+            margin-top: 10px;
+        }
+
+        select {
+            margin-top: 10px;
+        }
+
+        fieldset input[type="text"] {
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north',split:true" style="height:140px;">
+    <!--定义logo  -->
+    <div id="logo">
+        <div id="logo-left"></div>
+        <div id="logo-right"></div>
+    </div>
+    <div class="tagScroll">
+        <div class="divMainMenu">
+            <ul>
+                <li class="main-menu " idx=""><a href="index.html">检测管理</a></li>
+                <li class="main-menu main-menu-selected " idx="">车辆管理</li>
+                <li class="main-menu" idx="">站点管理</li>
+                <li class="main-menu" idx="">业务设置</li>
+                <li class="main-menu" idx="">系统管理</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div data-options="region:'west',title:'车辆管理',split:true" style="width:200px;">
+    <div>
+        <ul class="easyui-tree">
+            <li>
+                    <span>
+                        <a href="#"><span
+                                style="background: url('images/Menu/caradd.png');width: 16px;height: 16px;line-height: 0;margin: 0"></span><span>车辆信息录入</span></a>
+                    </span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div data-options="region:'center',title:'车辆信息录入'" style="padding:5px;">
+    <div class="easyui-layout" fit="true">
+        <div region="west" split="true" title="车辆列表" style="width:275px;">
+            <form id="carform" method="post">
+                <div>
+                    <label>车架号</label>
+                    <input class="easyui-validatebox" type="text"/>
+                </div>
+                <div>
+                    <label>号牌号码</label>
+                    <input class="easyui-validatebox" type="text"/>
+                </div>
+                <div>
+                    <label>号牌种类</label>
+                    <select id="brand" class="easyui-combobox" name="dept">
+                        <option value="aa">-请选择-</option>
+                        <option>大型汽车</option>
+                        <option>小型汽车</option>
+                        <option>教练汽车</option>
+                        <option>警用汽车</option>
+                        <option>挂车</option>
+                        <option>香港入出境车</option>
+                        <option>澳门入出境车</option>
+                        <option>使馆汽车</option>
+                        <option>领管汽车</option>
+                        <option>境外汽车</option>
+                        <option>外籍汽车</option>
+                        <option>普通摩托车</option>
+                        <option>轻便摩托车</option>
+                        <option>使馆摩托车</option>
+                        <option>领馆摩托车</option>
+                        <option>境外摩托车</option>
+                        <option>外籍摩托车</option>
+                        <option>低速车</option>
+                        <option>拖拉机</option>
+                        <option>教练摩托车</option>
+                        <option>试验汽车</option>
+                        <option>试验摩托车</option>
+                        <option>临时入境汽车</option>
+                        <option>临时入境摩托车</option>
+                        <option>临时行驶车</option>
+                        <option>警用摩托</option>
+                        <option>原农机号牌</option>
+                        <option>武警号牌</option>
+                        <option>军队号牌</option>
+                        <option>无号牌</option>
+                        <option>假号牌</option>
+                        <option>挪用号牌</option>
+                        <option>大型新能源车</option>
+                        <option>小型新能源车</option>
+                        <option>其他号牌</option>
+                    </select>
+                </div>
+                <div>
+                    <label>车牌颜色</label>
+                    <select id="color" class="easyui-combobox" name="dept">
+                        <option value="aa">-请选择-</option>
+                        <option>蓝色</option>
+                        <option>黄色</option>
+                        <option>黑色</option>
+                        <option>白色</option>
+                        <option>绿色</option>
+                    </select>
+                    <input type="reset"/>
+                </div>
+                <div><input type="checkbox">检索公安车辆数据<input type="checkbox">检索区厅车辆数据</div>
+                <div><input type="button" value="检索"/><input type="button" value="预约车辆检索"/></div>
+            </form>
+
+        </div>
+        <div region="center" split="true">
+            <div data-options="region:'north'" style="width:100%;height: 120px">
+                <div id="tabpanel" class="easyui-tabs" style="width:100%;height:120px;">
+                    <div title="方式一(根据车型审核)" data-options="closable:true">
+                        <div>
+                            <label>车辆型号</label>
+                            <input class="easyui-validatebox" type="text"/>
+                            <label>车辆品牌</label>
+                            <input class="easyui-validatebox" type="text"/>
+                            <label>发动机型号</label>
+                            <input class="easyui-validatebox" type="text"/>
+                            <input type="checkbox"><label>精确检索</label>
+                            <input type="button" value="检索">
+                            <a href="#">环保车型检索</a>
+                        </div>
+                    </div>
+                    <div title="方式二(其他方式审核)" data-options="closable:true">
+                        <div>
+                            <label>公安车辆类型<span class="needed">*</span></label>
+                            <input class="easyui-validatebox" type="text"/>
+                            <label>最大总质量(kg)<span class="needed">*</span></label>
+                            <input class="easyui-validatebox" type="text"/>
+                            <label>座位数<span class="needed">*</span></label>
+                            <input class="easyui-validatebox" type="text"/>
+                            <br/>
+                            <label>燃油类型<span class="needed">*</span></label>
+                            <input class="easyui-validatebox" type="text"/>
+                            <label>登记日期<span class="needed">*</span></label>
+                            <input class="easyui-datebox" type="text"/>
+
+                            <input type="button" value="审核">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-options="region:'south'" style="width: 100%;height: 400px;">
+
+                <fieldset>
+                    <legend>办理业务</legend>
+                    <div><input type="radio" name="yewu" checked/>机动车检测
+                        <input type="radio" name="yewu"/>新车
+                        <input type="radio" name="yewu"/>二手车
+                        <span style="color: green">办理业务必选一个</span></div>
+                </fieldset>
+                <fieldset>
+                    <legend>车辆基本信息</legend>
+                    <div>
+                        <label>号牌号码</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>车辆颜色</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>车辆类型</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>排放标准</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <br/>
+                        <label>使用性质</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>品牌</label>
+                        <input type="text"/>
+                        <label>车辆型号</label>
+                        <input type="text"/>
+                        <label>发动机型号</label>
+                        <input type="text"/>
+                        <br/>
+                        <label>车架号</label>
+                        <input type="text"/>
+                        <label>发动机号码</label>
+                        <input type="text"/>
+                        <label>初次登记日期</label>
+                        <input class="easyui-datebox" type="text"/>
+                        <label>出厂日期</label>
+                        <input class="easyui-datebox" type="text"/>
+                        <br/>
+                        <label>座位数</label>
+                        <input type="text"/>
+                        <label>最大质量(kg)</label>
+                        <input type="text"/>
+                        <label>整备质量(kg)</label>
+                        <input type="text"/>
+                        <label>基准质量(kg)</label>
+                        <input type="text"/>
+                        <br/>
+                        <label>机动车生产厂家</label>
+                        <input type="text"/>
+                        <label>燃料种类</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>营运性质</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>车主信息</legend>
+                    <div>
+                        <label>车主姓名</label>
+                        <input type="text"/>
+                        <label>联系地址</label>
+                        <input type="text"/>
+                        <br/>
+                        <label>联系电话</label>
+                        <input type="text"/>
+                        <label>证件类型</label>
+                        <select class="easyui-combobox" name="card">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>证件号码</label>
+                        <input type="text"/>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>车辆其他信息</legend>
+                    <div>
+                        <label>供油方式</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>进气方式</label>
+                        <select class="easyui-combobox" name="dept">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>发动机额定转速</label>
+                        <input type="text"/>
+                        <label>里程读数</label>
+                        <input type="text"/>
+                        <br/>
+                        <label>排量(L)</label>
+                        <input type="text"/>
+                        <label>车辆所属省份</label>
+                        <select class="easyui-combobox" name="pro">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>车辆所属城市</label>
+                        <select class="easyui-combobox" name="city">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>车辆所属县/区</label>
+                        <select class="easyui-combobox" name="des">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <br/>
+                        <label>发动机生产企业</label>
+                        <input type="text"/>
+                        <label>催化器外观号/生产厂家</label>
+                        <input type="text"/>
+                        <label>排气管数量</label>
+                        <input type="text"/>
+                        <label>单车轴重</label>
+                        <input type="text"/>
+                        <br/>
+                        <br/>
+                        <label>是否装有OBD</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <label>是否双燃料</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <label>是否有氧传感器</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <label>是否有三元催化装置</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <br/>
+                        <label>车辆登记日期</label>
+                        <input class="easyui-datebox" type="text"/>
+                        <label>强制报废年限</label>
+                        <input class="easyui-datebox" type="text"/>
+                        <label>变速器形式</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>车轮型号</label>
+                        <input type="text"/>
+                        <br/>
+                        <label>底盘型号</label>
+                        <input type="text"/>
+                        <label>档位数</label>
+                        <input type="text"/>
+                        <label>发动机冲程数</label>
+                        <input type="text"/>
+                        <label>气缸数</label>
+                        <input type="text"/>
+                        <br/>
+                        <br/>
+                        <label>驱动方式</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>是否为进口车</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <label>是否有EGR</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <label>是否有燃油蒸发控制装置</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <br/>
+                        <br/>
+                        <label>是否有后处理装置</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <label>后处理种类</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                        </select>
+                        <label>是否电控</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <label>是否能关闭车身稳定</label>
+                        <select class="easyui-combobox">
+                            <option value="">-请选择-</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        <br/>
+                        <label>发动机额定功率(kw)</label>
+                        <input type="text"/>
+                        <label>车辆状态</label>
+                        <input type="text"/>
+                        <label>车辆备注</label>
+                        <textarea></textarea>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <button>点击录入下一辆车</button>
+                    <button>保存</button>
+                    <button>受理</button>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

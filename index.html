@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>机动车环保管理检验系统</title>
+    <script type="text/javascript"
+            src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+    <script type="text/javascript"
+            src="js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="js/jquery-easyui-1.4.1/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="js/jquery-easyui-1.4.1/themes/default/easyui.css"/>
+    <style>
+        a {
+            text-decoration: none;
+            color: #0E2D5F;
+        }
+
+        #logo {
+            width: 100%;
+            background: url("images/top_middle.png");
+
+            height: 100px;
+            clear: both;
+            float: left;
+            overflow: hidden;
+        }
+
+        #logo-left {
+            width: 530px;
+            height: 100%;
+            float: left;
+            background: url("images/top/gl_top_left.jpg");
+        }
+
+        #logo-right {
+            height: 100%;
+            width: 425px;
+            float: right;
+            background: url("images/top/gl_top_right1.png");
+        }
+
+        .tagScroll {
+            float: left;
+            width: 100%;
+        }
+
+        .divMainMenu {
+            position: absolute;
+            left: 0;
+            top: 100px;
+            width: 100%;
+            height: 36px;
+            font-size: 16px;
+            line-height: 36px;
+            vertical-align: central;
+            background-image: url("images/main_menu_bg.png");
+        }
+
+        .tagScroll ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tagScroll li {
+            display: inline;
+            line-height: 36px;
+            cursor: pointer;
+        }
+
+        .main-menu {
+            margin: 0px 0px 0px 5px;
+            font-family: 微软雅黑, 宋体, Arial, helvetica, sans-serif;
+            font-size: 16px;
+            padding: 3px 5px 8px 5px;
+            height: 36px;
+            color: #0E2D5F;
+        }
+
+        .main-menu-selected {
+            color: black;
+            background-color: #95b8e7;
+            border-radius: 5px 5px 0px 0px;
+        }
+
+    </style>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north',split:true" style="height:140px;">
+    <!--定义logo  -->
+    <div id="logo">
+        <div id="logo-left"></div>
+        <div id="logo-right"></div>
+    </div>
+    <div class="tagScroll">
+        <div class="divMainMenu">
+            <ul>
+                <li class="main-menu main-menu-selected" idx="">检测管理</li>
+                <li class="main-menu " idx=""><a href="cheliangmanage.html">车辆管理</a></li>
+                <li class="main-menu" idx="">站点管理</li>
+                <li class="main-menu" idx="">业务设置</li>
+                <li class="main-menu" idx="">系统管理</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div data-options="region:'west',title:'检测管理',split:true" style="width:200px;">
+    <ul class="easyui-tree">
+        <li><span><a>受理</a></span></li>
+        <li><span><a>检测检索</a></span></li>
+        <li><span><a>黑烟车抓拍查询</a></span></li>
+    </ul>
+</div>
+<div data-options="region:'center'">
+    <!--在中部定义选项卡面板  -->
+    <div id="main" class="easyui-tabs" data-options="fit:true">
+        <div title="首页" style="padding:20px;">
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
